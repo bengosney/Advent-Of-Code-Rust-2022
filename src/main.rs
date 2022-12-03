@@ -1,50 +1,19 @@
-use std::collections::HashSet;
+mod day_03;
 use std::fs;
 
-fn score(c: char) -> u32 {
-    match c {
-        'a'..='z' => (c as u32) - 96,
-        'A'..='Z' => (c as u32) - 38,
-        _ => 0,
+fn run_day(day: u8, input: String) -> (u32, u32) {
+    match day {
+        3 => day_03::run(input),
+        _ => panic!("Not implemented yet!"),
     }
 }
 
-fn part_1(contents: String) -> u32 {
-    contents
-        .lines()
-        .map(|line| {
-            let (one, two) = line.split_at(line.len() / 2);
-
-            let set_one: HashSet<char> = HashSet::from_iter(one.chars());
-            let set_two: HashSet<char> = HashSet::from_iter(two.chars());
-
-            set_one
-                .intersection(&set_two)
-                .map(|c: &char| score(*c))
-                .sum::<u32>()
-        })
-        .sum::<u32>()
-}
-
-#[test]
-fn test_part_1() {
-    let test_str: String = "vJrwpWtwJgWrhcsFMMfFFhFp
-jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
-PmmdzqPrVvPwwTWBwg
-wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
-ttgJtRGJQctTZtZT
-CrZsJsPPZsGzwwsLwLmpwMDw"
-        .to_string();
-
-    assert_eq!(part_1(test_str), 157);
-}
-
 fn main() {
-    let file_path = "inputs/day_03.txt";
-    println!("In file {}", file_path);
+    let day: u8 = 3;
 
-    let contents = fs::read_to_string(file_path).expect("Should have been able to read the file");
+    let file_path = format!("inputs/day_{day:0>2}.txt");
+    let contents = fs::read_to_string(file_path).expect("Input not found!");
 
-    let answer_1 = part_1(contents);
-    println!("With text:\n{answer_1}");
+    let (answer_1, _) = run_day(day as u8, contents);
+    println!("{answer_1}");
 }
