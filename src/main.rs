@@ -10,20 +10,20 @@ fn score(c: char) -> u32 {
 }
 
 fn part_1(contents: String) -> u32 {
-    let mut total = 0;
-    for line in contents.lines() {
-        let (one, two) = line.split_at(line.len() / 2);
+    return contents
+        .lines()
+        .map(|line| {
+            let (one, two) = line.split_at(line.len() / 2);
 
-        let set_one: HashSet<char> = HashSet::from_iter(one.chars());
-        let set_two: HashSet<char> = HashSet::from_iter(two.chars());
+            let set_one: HashSet<char> = HashSet::from_iter(one.chars());
+            let set_two: HashSet<char> = HashSet::from_iter(two.chars());
 
-        let inter = set_one.intersection(&set_two);
-        let running_total: u32 = inter.map(|c: &char| score(*c)).sum::<u32>();
-
-        total += running_total;
-    }
-
-    return total;
+            return set_one
+                .intersection(&set_two)
+                .map(|c: &char| score(*c))
+                .sum::<u32>();
+        })
+        .sum::<u32>();
 }
 
 #[test]
