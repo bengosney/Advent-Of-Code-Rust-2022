@@ -10,7 +10,7 @@ fn score(c: char) -> u32 {
 }
 
 fn part_1(contents: String) -> u32 {
-    return contents
+    contents
         .lines()
         .map(|line| {
             let (one, two) = line.split_at(line.len() / 2);
@@ -18,30 +18,25 @@ fn part_1(contents: String) -> u32 {
             let set_one: HashSet<char> = HashSet::from_iter(one.chars());
             let set_two: HashSet<char> = HashSet::from_iter(two.chars());
 
-            return set_one
+            set_one
                 .intersection(&set_two)
                 .map(|c: &char| score(*c))
-                .sum::<u32>();
+                .sum::<u32>()
         })
-        .sum::<u32>();
+        .sum::<u32>()
 }
 
 #[test]
 fn test_part_1() {
-    let test_str = String::from(
-        "vJrwpWtwJgWrhcsFMMfFFhFp
+    let test_str: String = "vJrwpWtwJgWrhcsFMMfFFhFp
 jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
 PmmdzqPrVvPwwTWBwg
 wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
 ttgJtRGJQctTZtZT
-CrZsJsPPZsGzwwsLwLmpwMDw",
-    );
+CrZsJsPPZsGzwwsLwLmpwMDw"
+        .to_string();
 
-    println!("========================================================");
-    let ans = part_1(test_str);
-    println!("========================================================");
-    println!("{}", ans);
-    assert_eq!(ans, 157);
+    assert_eq!(part_1(test_str), 157);
 }
 
 fn main() {
