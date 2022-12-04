@@ -1,5 +1,6 @@
 mod day_01;
 mod day_03;
+mod day_04;
 
 use std::fs;
 
@@ -7,6 +8,7 @@ fn run_day(day: u8, input: String) -> (u32, u32) {
     match day {
         1 => day_01::run(input),
         3 => day_03::run(input),
+        4 => day_04::run(input),
         _ => panic!("Not implemented yet!"),
     }
 }
