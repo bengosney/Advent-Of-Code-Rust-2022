@@ -39,13 +39,8 @@ CrZsJsPPZsGzwwsLwLmpwMDw"
 }
 
 fn part_2(contents: &String) -> u32 {
-    let mut actual_iterator = Vec::new();
-    for line in contents.lines() {
-        actual_iterator.push(line);
-    }
-
     let mut total = 0;
-    for lines in actual_iterator.chunks(3) {
+    for lines in Vec::from_iter(contents.lines()).chunks(3) {
         let one: HashSet<char> = HashSet::from_iter(lines[0].chars());
         let two: HashSet<char> = HashSet::from_iter(lines[1].chars());
         let three: HashSet<char> = HashSet::from_iter(lines[2].chars());
