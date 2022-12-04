@@ -75,7 +75,6 @@ fn fix(game: Game) -> u32 {
         Game(them, Moves::Rock) => play(loose(them)),
         Game(them, Moves::Paper) => play(draw(them)),
         Game(them, Moves::Scissors) => play(win(them)),
-        _ => 0,
     }
 }
 
