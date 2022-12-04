@@ -1,6 +1,10 @@
-fn part_1(contents: &String) -> u32 {}
+fn part_1(contents: &String) -> u32 {
+    return 0;
+}
 
-fn part_2(contents: &String) -> u32 {}
+fn part_2(contents: &String) -> u32 {
+    return 0;
+}
 
 #[allow(dead_code)]
 fn get_test_string() -> String {
