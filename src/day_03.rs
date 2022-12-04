@@ -25,19 +25,6 @@ fn part_1(contents: &String) -> u32 {
         .sum::<u32>()
 }
 
-#[test]
-fn test_part_1() {
-    let test_str: String = "vJrwpWtwJgWrhcsFMMfFFhFp
-jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
-PmmdzqPrVvPwwTWBwg
-wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
-ttgJtRGJQctTZtZT
-CrZsJsPPZsGzwwsLwLmpwMDw"
-        .to_string();
-
-    assert_eq!(part_1(&test_str), 157);
-}
-
 fn part_2(contents: &String) -> u32 {
     Vec::from_iter(contents.lines())
         .chunks(3)
@@ -54,15 +41,28 @@ fn part_2(contents: &String) -> u32 {
         .sum::<u32>()
 }
 
-#[test]
-fn test_part_2() {
-    let test_str: String = "vJrwpWtwJgWrhcsFMMfFFhFp
+#[allow(dead_code)]
+fn get_test_string() -> String {
+    "vJrwpWtwJgWrhcsFMMfFFhFp
 jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
 PmmdzqPrVvPwwTWBwg
 wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
 ttgJtRGJQctTZtZT
 CrZsJsPPZsGzwwsLwLmpwMDw"
-        .to_string();
+        .to_string()
+        .clone()
+}
+
+#[test]
+fn test_part_1() {
+    let test_str: String = get_test_string();
+
+    assert_eq!(part_1(&test_str), 157);
+}
+
+#[test]
+fn test_part_2() {
+    let test_str: String = get_test_string();
 
     assert_eq!(part_2(&test_str), 70);
 }
