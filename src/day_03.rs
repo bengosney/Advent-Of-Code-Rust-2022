@@ -39,22 +39,19 @@ CrZsJsPPZsGzwwsLwLmpwMDw"
 }
 
 fn part_2(contents: &String) -> u32 {
-    let mut total = 0;
-    for lines in Vec::from_iter(contents.lines()).chunks(3) {
-        let one: HashSet<char> = HashSet::from_iter(lines[0].chars());
-        let two: HashSet<char> = HashSet::from_iter(lines[1].chars());
-        let three: HashSet<char> = HashSet::from_iter(lines[2].chars());
+    Vec::from_iter(contents.lines())
+        .chunks(3)
+        .map(|lines| {
+            let badges = lines[0]
+                .chars()
+                .filter(|c| lines[1].contains(*c))
+                .filter(|c| lines[2].contains(*c));
 
-        let inter_hash: HashSet<char> =
-            HashSet::from_iter(one.intersection(&two).map(|c| c.clone()));
+            let uniq_badges: HashSet<char> = HashSet::from_iter(badges);
 
-        total += inter_hash
-            .intersection(&three)
-            .map(|c: &char| score(*c))
-            .sum::<u32>();
-    }
-
-    return total;
+            uniq_badges.iter().map(|c: &char| score(*c)).sum::<u32>()
+        })
+        .sum::<u32>()
 }
 
 #[test]
